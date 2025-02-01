@@ -10,7 +10,7 @@ const Header = () => {
   const handleLogout = () => {
     setAuth({
       ...auth,
-      user: null,
+      users: null,
       token: "",
     });
     localStorage.removeItem("auth");
@@ -41,7 +41,7 @@ const Header = () => {
         {/* Navbar Links */}
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav ms-auto">
-            {!auth?.user ? (
+            {!auth?.users ? (
               <>
                 <li className="nav-item">
                   <NavLink to="/register" className="nav-link">
@@ -51,6 +51,11 @@ const Header = () => {
                 <li className="nav-item">
                   <NavLink to="/login" className="nav-link">
                     Login
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink to="/login" className="nav-link">
+                    Logout
                   </NavLink>
                 </li>
               </>
@@ -64,12 +69,12 @@ const Header = () => {
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
                 >
-                  {auth?.user?.name}
+                  {auth?.users?.Username}
                 </NavLink>
                 <ul className="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                   <li>
                     <NavLink
-                      to={`/dashboard/${auth?.user?.role === 1 ? "admin" : "user"}`}
+                      to={`/dashboard/${auth?.users?.role === 1 ? "admin" : "users"}`}
                       className="dropdown-item"
                     >
                       Dashboard

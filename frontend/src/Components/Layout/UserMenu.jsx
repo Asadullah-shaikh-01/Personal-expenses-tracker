@@ -7,6 +7,13 @@ const UserMenu = () => {
       <div className="text-center dashboard-menu">
         <div className="list-group">
           <h4 className="mb-3">User Dashboard</h4>
+          <NavLink
+            to="/dashboard"
+            className="list-group-item list-group-item-action bg-light text-dark mb-2 rounded"
+            activeClassName="active"
+          >
+            Dashboard
+          </NavLink>
 
        
           <NavLink

@@ -31,5 +31,5 @@ export default function PrivateRoute() {
     }
   }, [auth?.token]);
 
-  return ok ? <Outlet /> : <Navigate to="/login" />;
+  return ok ? <Outlet /> : <Navigate to="/dashboard" />;
 }

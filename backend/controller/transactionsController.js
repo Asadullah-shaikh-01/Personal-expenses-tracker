@@ -46,13 +46,7 @@ export const addIncome = async (req, res) => {
 
 export const GetIncome = async (req, res) => {
     try {
-        const {id} = req.params;
-        if(!id){
-            return res.status(401).send({
-                sucess: false,
-                message: "Income not founded"
-            })
-        }
+      
         const income = await IncomeModel.find().sort({ createdAt: -1 });
 
         res.status(200).send({
@@ -79,6 +73,7 @@ export const deleteIncome = async (req, res) => {
         res.status(200).send({
             sucess: true,
             message: "Income Delete Sucessfully",
+            income
         })
     } catch (error) {
         console.log(error);

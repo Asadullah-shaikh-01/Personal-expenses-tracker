@@ -14,10 +14,6 @@ const ExpenseSchema = new mongoose.Schema({
         maxLength: 20,
         trime: true,
     },
-    type: {
-        type: String,
-        default: "income"
-    },
     date: {
         type: Date,
         required: true,
@@ -35,6 +31,11 @@ const ExpenseSchema = new mongoose.Schema({
         maxLength: 20,
         trime: true,
     },
+    PaymentMethod: {
+        type: String,
+        required: true,
+        trime: true,
+    }
 }, { timeStamp: true })
 
 const expenseModel = mongoose.model("Expenses", ExpenseSchema)

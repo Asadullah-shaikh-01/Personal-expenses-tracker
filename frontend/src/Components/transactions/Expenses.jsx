@@ -6,18 +6,18 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 
 const Expenses = () => {
-  const [title, setTitle] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
-  const [amount, setAmount] = useState<number | "">("");
-  const [category, setCategory] = useState<string>("");
-  const [type, setType] = useState<string>("");
-  const [date, setDate] = useState<string>(""); // Added date state
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [amount, setAmount] = useState("");
+  const [category, setCategory] = useState("");
+  const [PaymentMethod, setPaymentMethod] = useState("");
+  const [date, setDate] = useState(""); // Added date state
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    if (!title || !description || !amount || !category || !type || !date) {
+    if (!title || !description || !amount || !category || !PaymentMethod || !date) {
       toast.error("Please fill in all fields!");
       return;
     }
@@ -30,16 +30,16 @@ const Expenses = () => {
           description,
           amount,
           category,
-          type,
+          PaymentMethod,
           date,
         }
       );
 
       if (response.data.success) {
+        toast.error(response.data.message);
+      } else {
         toast.success(response.data.message);
         navigate("/dashboard");
-      } else {
-        toast.error(response.data.message);
       }
     } catch (error) {
       const errorMessage =
@@ -111,8 +111,8 @@ const Expenses = () => {
                   <select
                     required
                     className="form-control"
-                    value={type}
-                    onChange={(e) => setType(e.target.value)}
+                    value={PaymentMethod}
+                    onChange={(e) => setPaymentMethod(e.target.value)}
                   >
                     <option value="">Select a Payment Method</option>
                     <option value="Credit Card">Credit Card</option>

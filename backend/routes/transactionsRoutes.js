@@ -8,7 +8,7 @@ const route = express.Router();
 //add income
 route.post('/add-income', signInRequired, addIncome)
 //get income
-route.get('/get-income/:id', signInRequired, GetIncome)
+route.get('/get-income', GetIncome)
 //delete income
 route.delete('/delete-income/:id', signInRequired, deleteIncome)
 
@@ -20,7 +20,7 @@ route.delete('/delete-income/:id', signInRequired, deleteIncome)
 route.post('/add-expenses', signInRequired, addexpense)
 
 //get expenses
-route.get('/get-expenses', signInRequired, Getexpense)
+route.get('/get-expenses', Getexpense)
 
 //delete expenses
 route.delete('/delete-expenses/:id', signInRequired, deleteExpense)

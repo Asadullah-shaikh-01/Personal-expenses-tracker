@@ -2,8 +2,8 @@ import expenseModel from "../models/expenseModel.js";
 
 export const addexpense = async (req, res) => {
     try {
-        const { title, amount, category, description, date } = req.body
-        if (!title || !category || !description || !date) {
+        const { title, amount, category, description, date,PaymentMethod } = req.body
+        if (!title || !category || !description || !date || !PaymentMethod) {
             return res.status(401).send({
                 sucess: false,
                 message: "All Fields are required"
@@ -20,16 +20,16 @@ export const addexpense = async (req, res) => {
             amount,
             category,
             description,
-            date
+            date,
+            PaymentMethod
         }).save();
 
         res.status(200).send({
             sucess: true,
-            message: "Income Add Sucessfully",
+            message: "Expenses Add Sucessfully",
             expense
 
         })
-
 
     } catch (error) {
         console.log(error);
@@ -45,11 +45,11 @@ export const Getexpense = async (req, res) => {
     try {
 
 
-        const income = await expenseModel.find().sort({ createdAt: -1 });
+        const expense = await expenseModel.find().sort({ createdAt: -1 });
 
         res.status(200).send({
             sucess: true,
-            message: "Income get Sucessfully",
+            message: "expense get Sucessfully",
             expense
         })
     } catch (error) {
@@ -66,11 +66,12 @@ export const deleteExpense = async (req, res) => {
     try {
 
         const { id } = req.params;
-        const income = await expenseModel.findByIdAndDelete(id);
+        const expense = await expenseModel.findByIdAndDelete(id);
 
         res.status(200).send({
             sucess: true,
-            message: "Income Delete Sucessfully",
+            message: "expense Delete Sucessfully",
+            expense
         })
     } catch (error) {
         console.log(error);

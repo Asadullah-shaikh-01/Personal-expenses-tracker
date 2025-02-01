@@ -12,7 +12,7 @@ export const registerController = async (req, res) => {
             })
         }
 
-        const Existinguser = await userModel.findOne({ Email });
+        const Existinguser = await userModel.find({ Email });
         if (!Existinguser) {
             return res.status(401).send({
                 sucess: false,

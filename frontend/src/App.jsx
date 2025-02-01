@@ -5,32 +5,29 @@ import { ToastContainer } from "react-toastify";
 import RegisterPages from "./pages/Register/RegisterPages";
 import LoginPages from "./pages/Login/LoginPages";
 import Dashboard from "./Components/Dashboard/Dashboard";
+
+import PrivateRoute from "./Components/Routes/Private"; // Ensure this is properly imported
 import Income from "./Components/transactions/Income";
 import Expenses from "./Components/transactions/Expenses";
 import Records from "./Components/transactions/Records";
-import PrivateRoute from "./Components/Routes/Private"; // Ensure this is properly imported
 
 const App = () => {
   return (
     <>
       <Routes>
-     
-
         {/* Login and Register Routes */}
-        <Route path="/login" element={<LoginPages />} />
-        <Route path="/register" element={<RegisterPages />} />
+        <Route exact path="/" element={<LoginPages />} />
+        <Route exact path="/login" element={<LoginPages />} />
+        <Route exact path="/register" element={<RegisterPages />} />
 
         {/* Protected Route for Dashboard */}
-        <Route >
-          {/* Parent route for Dashboard with nested routes */}
-          <Route path="/dashboard" element={<Dashboard />}>
-            <Route path="income" element={<Income />} />
-            <Route path="expense" element={<Expenses />} />
-            <Route path="recorde" element={<Records />} />
-          </Route>
-        </Route>
-
-      
+        {/* Parent route for Dashboard with nested routes */}
+        
+          <Route exact path="/dashboard" element={<Dashboard />} />
+          <Route exact path="/dashboard/income" element={<Income />} />
+          <Route exact path="/dashboard/expense" element={<Expenses />} />
+          <Route exact path="/dashboard/recorde" element={<Records />} />
+        
       </Routes>
 
       <ToastContainer />
